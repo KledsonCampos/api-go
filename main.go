@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/mux"
 )
@@ -31,8 +32,8 @@ func main() {
 	router.HandleFunc("/", Home)
 	router.HandleFunc("/health-check", HealthCheck).Methods("GET")
 	router.HandleFunc("/events", GetAllEvents).Methods("GET")
-
-	http.ListenAndServe(":8086", router)
+	port := os.Getenv("PORT")
+	http.ListenAndServe(":"+port, router)
 }
 
 func GetAllEvents(w http.ResponseWriter, r *http.Request) {
