@@ -1,0 +1,18 @@
+host: https://api-go-events.herokuapp.com/
+info:
+  contact:
+    email: support@swagger.io
+    name: API-event Support
+    url: http://www.swagger.io/support
+  description: This is a document event api.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger event-API
+  version: "1.0"
+paths:
+  /events:
+    get:
+      responses: {}
+swagger: "2.0"

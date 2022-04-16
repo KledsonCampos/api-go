@@ -26,6 +26,20 @@ var events = allEvents{
 	},
 }
 
+// @title           Swagger event-API
+// @version         1.0
+// @description     This is a document event api.
+// @termsOfService  http://swagger.io/terms/
+
+// @contact.name   API-event Support
+// @contact.url    http://www.swagger.io/support
+// @contact.email  support@swagger.io
+
+// @license.name  Apache 2.0
+// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+
+// @host      https://api-go-events.herokuapp.com/
+
 func main() {
 	log.Println("Starting API")
 	router := mux.NewRouter()
@@ -36,6 +50,15 @@ func main() {
 	http.ListenAndServe(":"+port, router)
 }
 
+// ShowAllEvents godoc
+// @Summary      Show all events
+// @Description  List all events
+// @Tags         events
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}  Event
+
+// @Router       /events [get]
 func GetAllEvents(w http.ResponseWriter, r *http.Request) {
 	log.Println("Acessamdo o endpoint get all events")
 	w.Header().Set("Content-Type", "application/json")

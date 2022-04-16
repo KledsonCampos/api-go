@@ -1,0 +1,26 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a document event api.",
+        "title": "Swagger event-API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API-event Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "https://api-go-events.herokuapp.com/",
+    "paths": {
+        "/events": {
+            "get": {
+                "responses": {}
+            }
+        }
+    }
+}
