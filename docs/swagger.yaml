@@ -15,4 +15,6 @@ paths:
   /events:
     get:
       responses: {}
+    post:
+      responses: {}
 swagger: "2.0"

@@ -28,6 +28,9 @@ const docTemplate = `{
         "/events": {
             "get": {
                 "responses": {}
+            },
+            "post": {
+                "responses": {}
             }
         }
     }
