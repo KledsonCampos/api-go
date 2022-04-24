@@ -1,20 +1,179 @@
-host: https://api-go-events.herokuapp.com/
-info:
-  contact:
-    email: support@swagger.io
-    name: API-event Support
-    url: http://www.swagger.io/support
-  description: This is a document event api.
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
-  title: Swagger event-API
-  version: "1.0"
-paths:
-  /events:
-    get:
-      responses: {}
-    post:
-      responses: {}
 swagger: "2.0"
+info:
+  description: "This is an example of event API development in golang language for a graduate class."
+  version: "1.0.0"
+  title: "Swagger Event"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "api-go-events.herokuapp.com"
+tags:
+- name: "event"
+  description: "Everything about your events"
+schemes:
+- "http"  
+paths:
+  /health-check:
+    get:
+      tags:
+      - "Health check"
+      summary:  "Health check service api"
+      description: ""
+      operationId: "health-check"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "string"
+        "500":
+          description: "Internal Server Error"
+  /event:
+    post:
+      tags:
+      - "Event"
+      summary:  "Add a new Event"
+      description: "Returns all event"
+      operationId: "addEvent"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: ""
+        description: "Event object that needs to add"
+        required: true
+        schema:
+          $ref: "#/definitions/Event"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+                $ref: "#/definitions/Event"
+        "500":
+          description: "Internal Server Error"
+          schema:
+            type: "string"
+    get:
+      tags:
+      - "Event"
+      summary:  "Get all Events"
+      description: ""
+      operationId: "getAllEvent"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
+        "500":
+          description: "Internal Server Error"
+  /event{id}:          
+    get:
+      tags:
+      - "Event"
+      summary:  "Find event by ID"
+      description: "Returns a single event"
+      operationId: "getEventById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of event to return"
+        required: true
+        type: "string"
+        format: "uuid"
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/Event"
+        "500":
+          description: "Internal Server Error"
+    put:
+      tags:
+      - "Event"
+      summary:  "Updates a event in the store with form data"
+      description: "Returns a event updated"
+      operationId: "putEventById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of event to return"
+        required: true
+        type: "string"
+        format: "uuid"
+      - in: "body"
+        name: ""
+        description: "Event object that needs to add"
+        required: true
+        schema:
+          $ref: "#/definitions/Event"  
+      responses:
+        "405":
+          description: "Invalid input"
+        "200":
+          description: "successful operation"
+          schema:
+              $ref: "#/definitions/Event"
+        "500":
+          description: "Internal Server Error"
+    delete:
+      tags:
+      - "Event"
+      summary:  "Delete event by ID"
+      description: "Returns a single event"
+      operationId: "deleteEventById"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of event to return"
+        required: true
+        type: "string"
+        format: "uuid"
+      responses:
+        "200":
+          description: "successful operation"
+        "500":
+          description: "Internal Server Error"
+definitions:
+  Event:  
+    type: "object"
+    required:
+    - "title"
+    - "description"
+    properties:
+      id:
+        type: "string"
+        format: "uuid"
+      title:
+        type: "string"
+      description:
+        type: "string"
