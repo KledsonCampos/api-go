@@ -52,7 +52,7 @@ func main() {
 
 	port := os.Getenv("PORT")
 	http.ListenAndServe(":"+port, router)
-	//http.ListenAndServe(":8086", router)
+	// http.ListenAndServe(":8086", router)
 }
 
 // @Summary      Show all events
@@ -166,14 +166,28 @@ func updateEvent(w http.ResponseWriter, r *http.Request) {
 func deleteEvent(w http.ResponseWriter, r *http.Request) {
 	log.Println("Deletando event")
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
 
 	eventID := mux.Vars(r)["id"]
 
-	for i, singleEvent := range events {
-		if singleEvent.Id.String() == eventID {
-			events = append(events[:i], events[i+1:]...)
-			log.Printf("The event with ID %v has been deleted successfully", eventID)
+	index, searchEvent := events.SearchEventById(eventID)
+
+	if searchEvent {
+		events = append(events[:index], events[index+1:]...)
+		log.Printf("The event with ID %v has been deleted successfully", eventID)
+		w.WriteHeader(http.StatusOK)
+
+	} else {
+		log.Printf("The event with ID %v not found", eventID)
+		w.WriteHeader(http.StatusMethodNotAllowed)
+	}
+}
+
+func (e allEvents) SearchEventById(id string) (int, bool) {
+
+	for i, singleEvent := range e {
+		if singleEvent.Id.String() == id {
+			return i, true
 		}
 	}
+	return 0, false
 }

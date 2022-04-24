@@ -51,7 +51,7 @@ paths:
       responses:
         "405":
           description: "Invalid input"
-        "200":
+        "201":
           description: "successful operation"
           schema:
             type: array
@@ -72,8 +72,6 @@ paths:
       produces:
       - "application/json"
       responses:
-        "405":
-          description: "Invalid input"
         "200":
           description: "successful operation"
           schema:
@@ -161,6 +159,8 @@ paths:
       responses:
         "200":
           description: "successful operation"
+        "405":
+          description: "Invalid input"  
         "500":
           description: "Internal Server Error"
 definitions:
