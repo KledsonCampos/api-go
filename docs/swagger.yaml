@@ -9,7 +9,7 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "api-go-events.herokuapp.com"
+host: "event-api-golang.herokuapp.com"
 tags:
 - name: "event"
   description: "Everything about your events"
